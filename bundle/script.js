@@ -76,12 +76,24 @@ var Theme = {
 var switchBtn = document.querySelector("#theme-switch-toggle");
 var bodyRf = document.querySelector('body');
 switchBtn.addEventListener('change', checkboxHandler);
+changeTheme();
 
 function checkboxHandler(event) {
   event.preventDefault();
   bodyRf.classList.toggle(Theme.DARK);
   localStorage.setItem('theme', bodyRf.classList);
   localStorage.setItem('ifCheckboxIsChecked', switchBtn.checked);
+}
+
+function changeTheme() {
+  var getThemes = localStorage.getItem('theme');
+  var isChecked = localStorage.getItem('ifCheckboxIsChecked');
+  console.log('Current theme is', getThemes);
+
+  if (getThemes) {
+    bodyRf.classList.add(getThemes);
+    switchBtn.checked = isChecked;
+  }
 }
 
 /***/ }),
